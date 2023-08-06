@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offers and Deals</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .card-link:hover .card {
+            transform: scale(1.05);
+            transition: transform 0.3s ease-in-out;
+        }
+        .card-footer {
+            font-size: 12px;
+        }
+        .overlay-text {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 5px;
+            font-size: 12px;
+        }
+        .product-price {
+            font-size: 14px;
+			margin-top: 6%;
+    padding-left: 5px;
+            text-decoration: line-through;
+            color: #999;
+        }
+        .date-added {
+            position: absolute;
+            right: 5px;
+            font-size: 10px;
+            color: #777;
+        }
+        .original-price {
+           
+            font-size: 25px;
+            font-weight: bold;
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <header class="bg-dark text-white text-center py-3">
+        <h1>Offers and Deals</h1>
+    </header>
+    <div class="container mt-4">
+        <div class="row" id="productContainer">
+            <!-- Products will be dynamically added here -->
+        </div>
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Simulated list of products (replace with your actual data)
+            $.getJSON('prod.json', function(products) {
+            
+            const productsPerPage = 12; // Number of products per page
+            let currentPage = 1;
+            
+            function loadProducts(page) {
+                const startIndex = (page - 1) * productsPerPage;
+                const endIndex = startIndex + productsPerPage;
+                
+                for (let i = startIndex; i < endIndex && i < products.length; i++) {
+                    const product = products[i];
+                    const productCard = `
+                        <div class="col-md-3 mb-4">
+                            <a href="${product.productLink}" target="_blank" rel="noopener noreferrer" class="card-link">
+                                <div class="card position-relative">
+                                    <img src="${product.img}" class="card-img-top" alt="${product.name}">
+                                    <div class="overlay-text">${product.ecommName}</div>
+                                   
+                                    <div class="card-body">
+                                        <h5 class="card-title">${product.name}</h5>
+										<p class="date-added">${product.dateAdded}</p>
+                                    </div>
+                                    <div class="card-footer">
+									<div class="row col">
+									 <div class="original-price">₹${product.originalPrice}</div>
+                                        <div class="product-price">₹${product.discountedPrice}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    `;
+                    $('#productContainer').append(productCard);
+                }
+            }
+            
+            // Initial load
+            loadProducts(currentPage);
+            
+            // Lazy load more products as user scrolls
+            $(window).scroll(function() {
+                if ($(window).scrollTop() + $(window).height() >= $(document).height() - 100) {
+                    currentPage++;
+                    loadProducts(currentPage);
+                }
+            });
+        });
+		});
+    </script>
+</body>
+</html>
