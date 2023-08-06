@@ -1,5 +1,14 @@
 [
 	{ 
+	"img": "https://m.media-amazon.com/images/I/713wsMLUMuL._SX569_PIbundle-124,TopRight,0,0_AA569SH20_.jpg",
+	"ecommName": "Amazon",
+	"productLink": "https://amzn.clnk.in/hupa",
+	"name": "Supples Premium Diapers, Large (L), 124 Count, 9-14 Kg, 12 hrs Absorption Baby Diaper Pants", 
+	"originalPrice": 1307, 
+	"discountedPrice": 999, 
+	"dateAdded": "06 Aug 2023" 
+   },
+	{ 
 	"img": "https://m.media-amazon.com/images/I/6144327llvL._SX522_PIbundle-3,TopRight,0,0_AA522SH20_.jpg",
 	"ecommName": "Amazon",
 	"productLink": "https://amzn.clnk.in/huoV",
@@ -7,5 +16,5 @@
 	"originalPrice": 747, 
 	"discountedPrice": 599, 
 	"dateAdded": "06 Aug 2023" 
-   },
+   }
 ]
