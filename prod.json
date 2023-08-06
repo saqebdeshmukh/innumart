@@ -169,5 +169,4 @@
 				  discountedPrice: 500, 
 				  dateAdded: '22 Jun 2023' 
 				},
-                // Add more products here
             ];
